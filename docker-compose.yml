@@ -1,0 +1,29 @@
+# Recall 一键本地部署（M0：前后端 + 数据卷）
+# OCR 默认 mock 模式；接入 PaddleOCR-VL GPU 推理时启用 ocr 服务并设置 OCR_MOCK=false
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: recall-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - RECALL_DATA_DIR=/app/data
+      - RECALL_HOST=0.0.0.0
+      - RECALL_DEEPSEEK_API_KEY=${RECALL_DEEPSEEK_API_KEY:-}
+      - RECALL_AI_MOCK=${RECALL_AI_MOCK:-true}
+      - RECALL_OCR_MOCK=${RECALL_OCR_MOCK:-true}
+      - RECALL_CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: recall-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

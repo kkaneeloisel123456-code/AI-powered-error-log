@@ -1,0 +1,25 @@
+# 数据与密钥（本地私有，不入库）
+data/
+.env
+*.key
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+*.local
+
+# 测试产物
+test-results/
+playwright-report/
+*.log
+
+# 编辑器
+.idea/
+.vscode/
+*.swp

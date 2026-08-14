@@ -1,0 +1,130 @@
+/* ============================================================
+   Recall Design Token（UI/UX 设计文档 2.2，禁止在组件内硬编码色值）
+   亮色为默认值，暗色由 html[data-theme="dark"] 覆盖
+   ============================================================ */
+:root {
+  /* 背景与表面 */
+  --bg-page: #F6F7F9;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F1F3F8;
+
+  /* 文字 */
+  --text-primary: #1A1D23;
+  --text-secondary: #5B6472;
+  --text-disabled: #9AA3B0;
+
+  /* 描边 */
+  --border: #E6E8EC;
+
+  /* 品牌（仅按钮/链接/选中态/进度条，面积占比 <= 10%） */
+  --brand: #4F46E5;
+  --brand-hover: #4338CA;
+  --brand-secondary: #14B8A6;
+  --brand-8: rgba(79, 70, 229, 0.08);   /* 列表选中/悬停 8% 透明底 */
+  --brand-focus: rgba(79, 70, 229, 0.24);
+
+  /* 语义状态（色点 + 文字，不能只靠颜色） */
+  --status-none: #6B7280;
+  --status-wrong: #DC2626;
+  --status-fixing: #EA8C00;
+  --status-mastered: #16A34A;
+  --status-wrong-8: rgba(220, 38, 38, 0.08);
+  --status-mastered-8: rgba(22, 163, 74, 0.08);
+  --status-fixing-8: rgba(234, 140, 0, 0.08);
+
+  /* 反馈 */
+  --error: #DC2626;
+  --warning: #EA8C00;
+  --focus-ring: #4F46E5;
+
+  /* 专注舱（方案 C 沉浸复习舱深色色板，复习/答疑页切换） */
+  --cockpit-bg: #0F172A;
+  --cockpit-panel: #1E293B;
+  --cockpit-text: #E2E8F0;
+  --cockpit-text-secondary: #94A3B8;
+  --cockpit-brand: #2DD4BF;
+  --cockpit-accent: #38BDF8;
+
+  /* AI 生成动效/空状态插画柔和渐变 */
+  --gradient-ai: linear-gradient(135deg, #6366F1 0%, #14B8A6 100%);
+
+  /* 字体 */
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-mono: "SF Mono", Consolas, "Courier New", monospace;
+
+  /* 字号 */
+  --fs-aux: 12px;      /* 辅助文字 */
+  --fs-aux2: 13px;
+  --fs-body: 14px;     /* 正文 */
+  --fs-body-lg: 15px;
+  --fs-card-title: 16px;
+  --fs-page-title: 18px;
+  --fs-page-title-lg: 20px;
+  --fs-big-number: 28px; /* 看板大数字，等宽 */
+
+  /* 行高 */
+  --lh-body: 1.6;
+  --lh-title: 1.35;
+  --lh-card: 1.4;
+
+  /* 间距刻度 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* 圆角（<= 8px） */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* 形状 */
+  --border-1: 1px solid var(--border);
+  --shadow-hover: 0 1px 2px rgba(16, 24, 40, 0.04);
+
+  /* 动效 */
+  --dur-hover: 120ms;
+  --dur-collapse: 160ms;
+  --dur-dialog: 200ms;
+
+  /* 布局 */
+  --nav-width: 240px;
+  --topbar-height: 56px;
+  --bottom-nav-height: 56px;
+  --content-max: 1440px;
+  --touch-target: 44px;
+}
+
+html[data-theme='dark'] {
+  --bg-page: #121418;
+  --bg-card: #1B1E24;
+  --bg-subtle: #23272F;
+
+  --text-primary: #E8EAED;
+  --text-secondary: #9AA3B0;
+  --text-disabled: #6B7280;
+
+  --border: #2A2E36;
+
+  --brand: #818CF8;
+  --brand-hover: #6366F1;
+  --brand-secondary: #2DD4BF;
+  --brand-8: rgba(129, 140, 248, 0.08);
+  --brand-focus: rgba(129, 140, 248, 0.24);
+
+  --status-none: #6B7280;
+  --status-wrong: #EF4444;
+  --status-fixing: #F59E0B;
+  --status-mastered: #22C55E;
+  --status-wrong-8: rgba(239, 68, 68, 0.08);
+  --status-mastered-8: rgba(34, 197, 94, 0.08);
+  --status-fixing-8: rgba(245, 158, 11, 0.08);
+
+  --error: #EF4444;
+  --warning: #F59E0B;
+  --focus-ring: #818CF8;
+
+  --shadow-hover: 0 1px 2px rgba(0, 0, 0, 0.3);
+}

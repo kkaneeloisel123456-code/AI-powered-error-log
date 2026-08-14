@@ -1,0 +1,232 @@
+/* ============================================================
+   响应式断点（UI/UX 设计文档 第九章）
+   PC >= 1200px / 平板 768-1199px / 移动 < 768px
+   断点只改布局栅格与内容密度，字号不随视口缩放
+   ============================================================ */
+
+/* ---------- 复习专注舱（UI/UX 2.4：方案 C 深色舱位，仅复习/答疑页开启） ---------- */
+html.cockpit {
+  --bg-page: var(--cockpit-bg);
+  --bg-card: var(--cockpit-panel);
+  --bg-subtle: #243044;
+  --text-primary: var(--cockpit-text);
+  --text-secondary: var(--cockpit-text-secondary);
+  --text-disabled: #64748B;
+  --border: #334155;
+  --brand: var(--cockpit-brand);
+  --brand-hover: #14B8A6;
+  --brand-8: rgba(45, 212, 191, 0.08);
+  --focus-ring: var(--cockpit-brand);
+}
+
+/* ---------- 全局外壳（桌面：240px 左导航 + 内容） ---------- */
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--nav-width) minmax(0, 1fr);
+  min-height: 100vh;
+}
+.app-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.app-content {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-5);
+}
+
+/* ---------- 顶部工具栏 ---------- */
+.topbar {
+  height: var(--topbar-height);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-5);
+  background: var(--bg-card);
+  border-bottom: var(--border-1);
+}
+.topbar-search {
+  flex: 1;
+  max-width: 360px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 36px;
+  padding: 0 var(--space-3);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+}
+.topbar-search input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  min-width: 0;
+}
+.topbar-search kbd {
+  font-family: var(--font-mono);
+  font-size: var(--fs-aux);
+  color: var(--text-disabled);
+  background: var(--bg-card);
+  border: var(--border-1);
+  border-radius: var(--radius-sm);
+  padding: 0 6px;
+  line-height: 1.6;
+}
+.topbar-spacer { flex: 1; }
+
+/* ---------- 左侧导航 ---------- */
+.global-nav {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-3);
+  background: var(--bg-card);
+  border-right: var(--border-1);
+  gap: var(--space-1);
+  overflow-y: auto;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-3);
+  font-weight: 600;
+  font-size: var(--fs-card-title);
+}
+.nav-logo .logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-ai);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: var(--touch-target);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--fs-body);
+  transition: background var(--dur-hover) ease, color var(--dur-hover) ease;
+}
+.nav-item:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+.nav-item.active {
+  background: var(--brand-8);
+  color: var(--brand);
+  font-weight: 500;
+}
+
+/* ---------- 底部导航（移动端） ---------- */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-height);
+  z-index: 40;
+  background: var(--bg-card);
+  border-top: var(--border-1);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bottom-nav a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: var(--fs-aux);
+  color: var(--text-secondary);
+  min-height: var(--touch-target);
+}
+.bottom-nav a.active { color: var(--brand); }
+
+/* ============================================================
+   平板 768 - 1199px：侧栏收窄为 64px 图标栏，间距 16px
+   ============================================================ */
+@media (max-width: 1199px) {
+  .app-shell {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+  .global-nav {
+    padding: var(--space-3) var(--space-2);
+    align-items: center;
+  }
+  .nav-logo { padding: var(--space-1); }
+  .nav-logo .logo-text { display: none; }
+  .nav-item {
+    justify-content: center;
+    width: var(--touch-target);
+    padding: 0;
+  }
+  .nav-item .nav-label { display: none; }
+  .app-content { padding: var(--space-4); }
+  .topbar { padding: 0 var(--space-4); }
+  .topbar-search { max-width: 240px; }
+}
+
+/* ============================================================
+   移动 < 768px：单栏 + 底部主导航，间距 12px
+   ============================================================ */
+@media (max-width: 767px) {
+  :root {
+    --touch-target: 44px;
+  }
+  .app-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .global-nav { display: none; }
+  .bottom-nav { display: flex; }
+  .app-content {
+    padding: var(--space-3);
+    padding-bottom: calc(var(--bottom-nav-height) + var(--space-4) + env(safe-area-inset-bottom));
+  }
+  .topbar {
+    padding: 0 var(--space-3);
+  }
+  .topbar-search { display: none; }
+  .topbar-search.mobile-open {
+    display: flex;
+    position: absolute;
+    left: var(--space-3);
+    right: var(--space-3);
+    max-width: none;
+    background: var(--bg-card);
+    border: var(--border-1);
+    box-shadow: var(--shadow-hover);
+  }
+  .btn { height: var(--touch-target); }
+  .btn-sm { height: 32px; }
+
+  /* 弹窗改为底部抽屉（<480px 顶部圆角 8px） */
+  .dialog-mask { align-items: flex-end; }
+  .dialog {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding-bottom: calc(var(--space-5) + env(safe-area-inset-bottom));
+  }
+  .toast { width: calc(100vw - 32px); }
+
+  /* 表格类内容改为堆叠卡片由各页面自行处理 */
+}

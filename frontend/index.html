@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Recall - AI 智能错题本：拍照录入、一键复习、SM-2 计划、AI 答疑，数据本地存储" />
+    <title>Recall - AI 智能错题本</title>
+    <script>
+      // 首屏防闪烁：渲染前应用持久化主题
+      (function () {
+        var saved = null
+        try { saved = localStorage.getItem('recall-theme') } catch (e) {}
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        document.documentElement.setAttribute('data-theme', theme)
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
