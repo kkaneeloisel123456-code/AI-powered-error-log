@@ -79,6 +79,7 @@ html.cockpit {
   padding: 0 6px;
   line-height: 1.6;
 }
+.mobile-search-toggle { display: none; }
 .topbar-spacer { flex: 1; }
 
 /* ---------- 左侧导航 ---------- */
@@ -204,6 +205,7 @@ html.cockpit {
   .topbar {
     padding: 0 var(--space-3);
   }
+  .mobile-search-toggle { display: inline-flex; }
   .topbar-search { display: none; }
   .topbar-search.mobile-open {
     display: flex;

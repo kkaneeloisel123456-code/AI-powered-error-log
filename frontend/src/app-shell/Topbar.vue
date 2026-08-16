@@ -35,6 +35,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 
 <template>
   <header class="topbar">
+    <button class="btn-icon mobile-search-toggle" aria-label="搜索" title="搜索" @click="mobileSearchOpen = !mobileSearchOpen">
+      <Search :size="18" :stroke-width="1.5" />
+    </button>
     <div class="topbar-search" :class="{ 'mobile-open': mobileSearchOpen }">
       <Search :size="16" :stroke-width="1.5" />
       <input
